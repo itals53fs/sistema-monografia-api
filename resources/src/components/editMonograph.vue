@@ -1,6 +1,5 @@
 <template>
   <v-container class="card">
-    {{monography}}
     <v-card-title class="title">
       <span class="text-h5">Editar Monografia</span>
     </v-card-title>
