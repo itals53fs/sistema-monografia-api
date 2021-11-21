@@ -4,50 +4,77 @@
       <v-card-title class="title">
         <span class="text-h5">Cadastro Monografia</span>
       </v-card-title>
-      <v-form>
+      <v-form v-model="valid">
         <v-text-field
+          required
+          :rules="rules"
           type="text"
           label="Título da Obra"
           v-model="monography.title"
         ></v-text-field>
         <v-text-field
+          required
+          :rules="rules"
           type="text"
           label="Autor"
           v-model="monography.author"
         ></v-text-field>
         <v-text-field
+          required
+          :rules="rules"
           type="text"
           label="Link imagem"
           v-model="monography.image"
         ></v-text-field>
         <v-text-field
+          required
+          :rules="rules"
           type="text"
           label="link monografia"
           v-model="monography.link"
         ></v-text-field>
+        <v-textarea
+          required
+          :rules="rules"
+          outlined
+          auto-grow
+          label="Descrição"
+          rows="2"
+          row-height="20"
+          v-model="monography.desc"
+        ></v-textarea>
         <v-rating
+          required
+          :rules="rules"
           v-model="monography.evaluation"
           icon-label="custom icon label text {0} of {1}"
         ></v-rating>
       </v-form>
-      <v-btn class="button" @click="register">Cadastrar</v-btn>
+      <v-btn class="button" @click="register" :disabled="!valid">Cadastrar</v-btn>
     </v-container>
   </v-card>
 </template>
 
 <script>
 import { mapActions } from "vuex";
+import router from '../router';
 export default {
   data() {
     return {
+      valid: false,
       monography: {
        title: '',
         author: '',
         link: '',
         image: '',
+        desc: '',
         evaluation: 0,
       },
+      rules:[
+        v=> !!v || 'Campo obrigatório'
+      ]
     };
+
   
   },
   methods: {
@@ -60,7 +87,7 @@ export default {
         evaluation: parseInt(this.monography.evaluation),
         image: this.monography.image,
         link: this.monography.link,
-        id: new Date().getTime()
+        desc: this.monography.desc
       };
       this.cadastrarMonografia(data);
 
@@ -70,7 +97,9 @@ export default {
         evaluation: 0,
         image: '',
         link: '',
+        desc: ','
       };
+      router.push({name:"Home"})
     },
   },
 };

@@ -5,4 +5,4 @@ from .models import Monografia
 class MonografiaSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Monografia
-        fields = ['url','titulodaobra', 'autor', 'linkimagem', 'linkdocumento']
+        fields = ['url','title', 'author', 'image', 'link', 'desc', 'evaluation']

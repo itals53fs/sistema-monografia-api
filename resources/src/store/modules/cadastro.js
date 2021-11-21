@@ -22,30 +22,33 @@ export default {
     },
   },
   actions: {
-    async cadastrarMonografia({ commit }, payload) {
+    async cadastrarMonografia({dispatch}, payload) {
       axios.post('http://127.0.0.1:8000/monografia/',
       {
-        titulodaobra: payload.title,
-        autor: payload.author,
-        linkimagem: payload.image,
-        linkdocumento: payload.link
+        author: payload.author,
+        title: payload.title,
+        image: payload.image,
+        link: payload.link,
+        des: payload.desc,
+        evaluation: payload.evaluation,
       },
         {auth:{
-        username: 'ulisses',
-        password: '123123'
+        username: 'tales',
+        password: '123'
       }}
       ).then(()=>{
-        commit('addMonografia', payload)
+        dispatch('getMonografia')
       })
 
 
     },
     deleteMonografia({ dispatch}, payload) {
-      axios.delete(payload,{auth:{
-        username: 'ulisses',
-        password: '123123'
+      console.log(payload)
+       axios.delete(payload,
+        {auth:{
+        username: 'tales',
+        password: '123'
       }}).then(()=>{
-        
         dispatch('getMonografia')
       })
       //const index = state.monografias.findIndex(e => e.id == payload)
@@ -53,14 +56,17 @@ export default {
     updateMonografia({dispatch}, payload) {
       axios.put(payload.url,
         {
-          titulodaobra: payload.title,
-          autor: payload.author,
-          linkimagem: payload.image,
-          linkdocumento: payload.link
+          author: payload.author,
+          title: payload.title,
+          image: payload.image,
+          link: payload.link,
+          desc: payload.desc,
+          evaluation: payload.evaluation,
+
         },
-              {auth:{
-          username: 'ulisses',
-          password: '123123'
+        {auth:{
+          username: 'tales',
+          password: '123'
         }}
         ).then(()=>{
           dispatch('getMonografia')
@@ -79,12 +85,13 @@ export default {
         console.log(res.data)
         res.data.map(element=>{
          data.push({
-          title: element.titulodaobra,
-          author: element.autor,
-          link: element.linkimagem,
-          image: element.linkdocumento,
-          evaluation: 5,
+          title: element.title,
+          author: element.author,
+          link: element.link,
+          image: element.image,
+          evaluation: parseInt(element.evaluation),
           url: element.url,
+          desc: element.desc
          })
         })
         commit('setMonografias', data)

@@ -24,6 +24,13 @@
         label="link monografia"
         v-model="monography.link"
       ></v-text-field>
+      <v-textarea
+          outlined
+          auto-grow
+          label="Descrição"
+          row-height="20"
+          v-model="monography.desc"
+        ></v-textarea>
       <v-rating
         v-model="monography.evaluation"
         icon-label="custom icon label text {0} of {1}"
@@ -48,6 +55,7 @@ export default {
         link: '',
         image: '',
         evaluation: 0,
+        desc: ''
       }
     }
   },
@@ -57,7 +65,7 @@ export default {
   methods: {
     ...mapActions("cadastro", ["updateMonografia"]),
     alterar() {
-        
+        this.dialogEdite = false
       this.updateMonografia(this.monography);
     },
   },
@@ -70,7 +78,7 @@ export default {
   justify-content: center;
   flex-direction: column;
   background-color: white;
-  width: 97%;
+  width: 96%;
 }
 
 .title {

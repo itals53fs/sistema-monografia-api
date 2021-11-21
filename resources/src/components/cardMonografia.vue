@@ -1,5 +1,6 @@
 <template>
   <v-card :loading="loading" class="mx-auto my-12 card" min-width="320">
+    {{dadoMonografia.url}}
     <template slot="progress">
       <v-progress-linear color="deep-purple"></v-progress-linear>
     </template>
@@ -29,7 +30,10 @@
 
     <v-divider class="mx-4"></v-divider>
 
-    <v-card-title class="title-author">{{ dadoMonografia.author }}</v-card-title>
+    <v-card-title class="title-author">{{
+      dadoMonografia.author
+    }}</v-card-title>
+    <p class="text-monography">{{ dadoMonografia.desc }}</p>
     <v-card-actions class="footer-actions">
       <v-btn class="button-view" text @click="reserve"> Visualizar </v-btn>
       <button class="button-delete" @click.prevent="openDialog">
@@ -37,12 +41,13 @@
       </button>
     </v-card-actions>
     <v-dialog v-model="dialogmsg" width="500">
+      {{dadoMonografia.url}}
       <v-card class="modal">
         <v-card-title class="title">
           <span class="text-h5">Apagar Monografia</span>
         </v-card-title>
         <p class="text">Tem certeza que quer apagar a monografia?</p>
-        <div class="button-actions">
+        <div class="button-actions-comp">
           <v-btn class="button-view" text @click="apagar">SIM</v-btn>
           <v-btn class="button-no" @click="dialogmsg = false">NÃO</v-btn>
         </div>
@@ -50,9 +55,9 @@
     </v-dialog>
 
     <v-dialog v-model="dialogEdite" width="800">
-      <v-card>
+      <div>
         <edit-monograph :data="dadoMonografia" class="comp"></edit-monograph>
-      </v-card>
+      </div>
     </v-dialog>
   </v-card>
 </template>
@@ -65,22 +70,27 @@ export default {
     dadoMonografia: Object,
   },
   data: () => ({
+    data: '',
     loading: false,
     selection: 1,
     dialogmsg: false,
     dialogEdite: false,
   }),
+  beforeMonted(){
+    this.data = this.dadoMonografia
+   this.dadoMonografia.desc = this.dadoMonografia.desc.replace(/\n/g, '<br/>')
+  },
 
   methods: {
     ...mapActions("cadastro", ["deleteMonografia"]),
     apagar() {
       this.dialogmsg = false;
-      const url = this.dadoMonografia.url;
-      this.deleteMonografia(url);
+      this.deleteMonografia(this.dadoMonografia.url);
     },
     openDialog() {
       this.dialogmsg = true;
     },
+
 
     reserve() {
       this.loading = true;
@@ -91,10 +101,14 @@ export default {
 };
 </script>
 <style scoped>
-.modal {
-  padding: 16px ;
+.text-monography {
+  margin: 0 16px;
+  overflow-y: hidden !important;
 }
-.v-dialog{
+.modal {
+  padding: 16px;
+}
+.v-dialog {
   box-shadow: none !important;
 }
 
@@ -108,7 +122,7 @@ export default {
 }
 
 .title-author {
-  font-size: 12px !important;
+  font-size: 18px !important;
 }
 
 .footer-actions {
@@ -132,11 +146,11 @@ export default {
   margin: 22px;
 }
 
-.button-actions {
-  display: flex;
+.button-actions-comp {
   flex-direction: row;
   padding: 10px;
-  justify-content: end;
+  justify-content: flex-end;
+  display: flex;
 }
 
 .button-no {
