@@ -3,13 +3,18 @@
 ### Grupo
 
 CAMILA DE SOUZA FERREIRA
+```
 ÉRICA CRISTIANA DOS SANTOS
+```
 GABRIEL MORAIS OLIVEIRA
+```
 MARLEISON DA SILVA RODRIGUES
+```
 TALES FÉLIX GONÇALVES CRUZ
+```
 ULISSES XAVIER BRANDÃO
 
-### Dretro da pasta server
+### Dentro da pasta server
 
 Instalando dependencias
 ```
