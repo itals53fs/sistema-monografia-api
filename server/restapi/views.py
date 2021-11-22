@@ -9,3 +9,7 @@ from .serializer import MonografiaSerializer
 class MonografiaViewSet(viewsets.ModelViewSet):
     queryset = Monografia.objects.all()
     serializer_class = MonografiaSerializer
+
+
+def index(request):
+    return render(request, 'index.html')

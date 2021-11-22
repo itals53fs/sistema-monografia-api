@@ -43,7 +43,6 @@ export default {
 
     },
     deleteMonografia({ dispatch}, payload) {
-      console.log(payload)
        axios.delete(payload,
         {auth:{
         username: 'tales',
@@ -82,7 +81,6 @@ export default {
       const data = []
       axios.get('http://localhost:8000/monografia/')
       .then((res)=>{
-        console.log(res.data)
         res.data.map(element=>{
          data.push({
           title: element.title,

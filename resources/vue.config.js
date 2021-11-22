@@ -3,6 +3,6 @@ module.exports = {
     'vuetify'
   ],
 
-  /* outputDir: '../myproject/core/templates',
+  /* outputDir: '../server/restapi/templates',
   assetsDir: '../static' */
 }
