@@ -3,28 +3,37 @@
     <v-card-title class="title">
       <span class="text-h5">Editar Monografia</span>
     </v-card-title>
-    <v-form>
+    <v-form v-model="valid">
       <v-text-field
+      required
+      :rules="rules"
         type="text"
         label="Título da Obra"
        v-model="monography.title"
       ></v-text-field>
       <v-text-field
+      required
+      :rules="rules"
         type="text"
         label="Autor"
         v-model="monography.author"
       ></v-text-field>
       <v-text-field
+      :rules="rules"
         type="text"
         label="Link imagem"
         v-model="monography.image"
       ></v-text-field>
       <v-text-field
+      required
+      :rules="rules"
         type="text"
         label="link monografia"
         v-model="monography.link"
       ></v-text-field>
       <v-textarea
+      required
+      :rules="rules"
           outlined
           auto-grow
           label="Descrição"
@@ -37,7 +46,7 @@
       ></v-rating>
     </v-form>
     <v-spacer></v-spacer>
-    <v-btn class="button" @click="alterar"> EDITAR </v-btn>
+    <v-btn class="button" @click="alterar" :disabled="!valid"> EDITAR </v-btn>
   </v-container>
 </template>
 
@@ -49,6 +58,7 @@ export default {
   },
   data(){
     return{
+      valid: false,
       monography:{
         title: '',
         author: '',
@@ -56,7 +66,10 @@ export default {
         image: '',
         evaluation: 0,
         desc: ''
-      }
+      },
+       rules:[
+        v=> !!v || 'Campo obrigatório'
+      ]
     }
   },
   created(){

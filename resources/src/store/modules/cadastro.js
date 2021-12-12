@@ -52,7 +52,8 @@ export default {
       })
       //const index = state.monografias.findIndex(e => e.id == payload)
     },
-    updateMonografia({dispatch}, payload) {
+    async updateMonografia({dispatch}, payload) {
+      console.log(payload)
       axios.put(payload.url,
         {
           author: payload.author,
@@ -67,7 +68,8 @@ export default {
           username: 'tales',
           password: '123'
         }}
-        ).then(()=>{
+        ).then((e)=>{
+          console.log(e)
           dispatch('getMonografia')
         })
 
