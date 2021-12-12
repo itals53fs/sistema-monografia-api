@@ -29,7 +29,7 @@ export default {
         title: payload.title,
         image: payload.image,
         link: payload.link,
-        des: payload.desc,
+        desc: payload.desc,
         evaluation: payload.evaluation,
       },
         {auth:{
