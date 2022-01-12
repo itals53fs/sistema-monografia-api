@@ -36,6 +36,7 @@ export default {
     items: [
       { text: "Principal", icon: "mdi-account", to: "/" },
       { text: "Cadastro", icon: "mdi-plus-thick", to: "cadastro" },
+      { text: "Colaboradores", icon: "mdi-plus-thick", to: "colaboradores" },
       ],
   }),
   methods: {

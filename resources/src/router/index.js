@@ -3,7 +3,8 @@ import VueRouter from 'vue-router'
 import appcontainer from '../views/appContainer.vue'
 import Home from '../views/Home.vue'
 import Cadastro from '../views/Cadastro.vue'
-import log from '../views/log'
+import login from '../views/login'
+import Colaboradores from '../views/Colaboradores'
 
 Vue.use(VueRouter)
 
@@ -22,13 +23,18 @@ const routes = [
         path:'/cadastro',
         name: 'Cadastro',
         component: Cadastro
+      },
+      {
+        path:'/colaboradores',
+        name: 'colaboradores',
+        component: Colaboradores
       }
     ]
   },
  {
-    path: '/log',
+    path: '/login',
     name: 'Login',
-    component: log
+    component: login
   },
 ]
 
