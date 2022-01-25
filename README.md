@@ -1,13 +1,6 @@
 # Sistema Monografia
 
-## Grupo
 
-- CAMILA DE SOUZA FERREIRA
-- ÉRICA CRISTIANA DOS SANTOS
-- GABRIEL MORAIS OLIVEIRA
-- MARLEISON DA SILVA RODRIGUES
-- TALES FÉLIX GONÇALVES CRUZ
-- ULISSES XAVIER BRANDÃO
 ### Global
 <p>É nesserio ter as segintes dependencia de forma global</p>
 <h3>NodeJS</h3>
